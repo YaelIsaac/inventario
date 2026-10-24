@@ -1,30 +1,137 @@
 # PizzaStock
 
-App Flutter + Firebase para que **negocios** lleven su inventario y le pidan a sus **proveedores**, y para que los proveedores tengan en orden a sus clientes, pedidos y cobros.
+App que conecta Proveedores con Negocios. Los Negocios pueden tener su inventario en orden y pedir productos a proveedores. Los Proveedores pueden distribuir su mercancia a distintos Negocios.
 
-| Rol | Qué hace |
-|---|---|
-| **Proveedor** | Catálogo con todos los productos que surte · registra negocios por correo o recibe solicitudes con su código · recibe y avanza pedidos · estado de cuenta (saldo y abonos) por cliente · cuenta para transferencias · reportes. |
-| **Negocio** | Inventario propio (entradas/salidas, mínimos y alertas) · varios proveedores · pedidos a cada proveedor según su catálogo · al recibir un pedido se suma solo al inventario · saldo por proveedor y comprobantes de pago. |
-| **Administrador** | Ve todas las cuentas, verifica proveedores, suspende cuentas, asciende/desciende administradores y ve estadísticas de la plataforma. |
+## Capturas de pantalla
 
-## Cómo se conectan proveedor y negocio
-1. **Por código:** el negocio escribe el código del proveedor (o lo busca en el directorio) y el proveedor aprueba la solicitud.
-2. **Por correo:** el proveedor registra al negocio con su correo; en cuanto ese negocio crea su cuenta (o si ya la tiene) quedan vinculados solos.
+### 1. Pantalla de carga al iniciar la App.
 
-## Puesta en marcha
-1. **Correo del administrador inicial** (2 lugares, idénticos):
-   - `lib/config.dart` → `kAdminInicial`
-   - `firestore.rules` → función `adminInicial()`
-   Crea esa cuenta primero (Crear cuenta con ese correo) y quedará como administrador.
-2. Firebase → **Authentication → Método de acceso**: activa **Correo electrónico/contraseña**. (El acceso anónimo ya no se usa.)
-3. Firebase → **Firestore → Reglas**: pega `firestore.rules` y **Publica**.
-4. `android/app/google-services.json` en su lugar.
-5. **Borra los datos de prueba anteriores** en Firestore (colecciones `productos`, `movimientos`, `menu`, `pedidos`, `users`, `config`, `comprobantes`) y las cuentas viejas en Authentication: la estructura cambió.
-6. `flutter pub get` y `flutter run`.
+![](capturas/InicioApp.jpeg)
 
-## Notas
-- Comprobantes: la foto se comprime y se guarda en Firestore (Firebase Storage exige plan de pago).
-- Notificaciones **locales**: llegan con la app abierta o en segundo plano. Con la app cerrada del todo harían falta FCM + Cloud Functions (plan de pago).
-- El saldo cuenta los pedidos **entregados** menos los abonos que registra el proveedor.
-- El correo no se verifica por email al registrarse; si compartes la app, crea primero la cuenta del administrador.
+### 2. Login de la App.
+
+![](capturas/Login.jpeg)
+
+### 3. Crear cuenta para un Negocio.
+
+![](capturas/RegistrarseNegocio.jpeg)
+
+### 4. Crear cuenta para un Proveedor.
+
+![](capturas/RegistrarseProveedor.jpeg)
+
+### 5. Pantalla de Inicio de cuenta del Negocio.
+
+![](capturas/InicioNegocio.jpeg)
+
+### 6. Pantalla de el inventario del Negocio.
+
+![](capturas/InventarioNegocio.jpeg)
+
+### 7. Registro de entrada o salida de Materias Primas.
+
+![](capturas/RegistrarEntradaSalidaNegocio.jpeg)
+
+### 8. Registra un producto nuevo en el inventario del Negocio.
+
+![](capturas/RegistrarNuevoProductoNegocio.jpeg)
+
+### 9. Pantalla de los proveedores vinculados al Negocio.
+
+![](capturas/MisProveedoresNegocio.jpeg)
+
+### 10. Pantalla de los pedidos realizados a el proveedor.
+
+![](capturas/MisPedidosNegocio.jpeg)
+
+### 11. Pantalla para agregar a Proveedores mediante el código de proveedor o buscándolos por su nombre.
+
+![](capturas/AgregarProveedorNegocio.jpeg)
+
+### 12. Pantalla de Mas Información del Negocio.
+
+![](capturas/MasNegocio.jpeg)
+
+### 13. Datos de la cuenta del Negocio.
+
+![](capturas/MiCuentaNegocio.jpeg)
+
+### 14. Pantalla de Reportes del Negocio.
+
+![](capturas/ReportesNegocio.jpeg)
+
+### 15. Pantalla de Notificaciones del Negocio.
+
+![](capturas/NotificacionesNegocio.jpeg)
+
+### 16. Información detallada del artículo registrado en el inventario del Negocio.
+
+![](capturas/ArticuloInventarioNegocio.jpeg)
+
+### 17. Pantalla del Catálogo que ofrece el Negocio.
+
+![](capturas/CatalogoProveedorNegocio.jpeg)
+
+### 18. Pantalla donde revisa el pedido y agrega algunos datos para el envío.
+
+![](capturas/RevisarPedidoProveedorNegocio.jpeg)
+
+### 19. Perfil del Proveedor visto desde la cuenta del Negocio.
+
+![](capturas//PerfilProveedorNegocio.jpeg)
+
+### 20. Información del pedido echo al Proveedor visto desde la cuenta del Negocio.
+
+![](capturas/ComprobantePedidoNegocio.jpeg)
+
+### 21. Pantalla de Inicio de la cuenta de Proveedor.
+
+![](capturas/InicioProveedor.jpeg)
+
+### 22. Pantalla de Pedidos.
+
+![](capturas/PedidosProveedor.jpeg)
+
+### 23. Pantalla de los clientes del Proveedor.
+
+![](capturas/ClientesProveedor.jpeg)
+
+### 24. Perfil del Negocio Visto desde la cuenta del Proveedor.
+
+![](capturas/PerfilNegocioProveedor.jpeg)
+
+### 25. Pantalla en donde el Proveedor puede Registrar un Negocio.
+
+![](capturas/RegistrarNegocioProveedor.jpeg)
+
+### 26. Catálogo del Proveedor.
+
+![](capturas/CatalogoProveedor.jpeg)
+
+### 27. Pantalla para registrar un nuevo producto del Proveedor.
+
+![](capturas/RegistrarNuevoProductoProveedor.jpeg)
+
+### 28. Pantalla de Más Información de la cuenta del Proveedor.
+
+![](capturas/MasProveedor.jpeg)
+
+### 29. Datos de la cuenta del Proveedor.
+
+![](capturas/MiCuentaProveedor.jpeg)
+
+### 30. Pantalla para Agregar una cuenta para transferencias.
+
+![](capturas/AgregarCuentaTransferenciaProveedor.jpeg)
+
+### 31. Pantalla de Reportes de Proveedor.
+
+![](capturas/ReportesProveedor.jpeg)
+
+### 32. Información del pedido echo del Negocio al Proveedor visto desde la cuenta del Proveedor.
+
+![](capturas/ComprobantePedidoProveedor.jpeg)
+
+### 33. Pantalla para Editar un producto que ya esté registrado en el catálogo del Proveedor.
+
+![](capturas/InicioNegocio)
